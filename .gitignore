@@ -1,0 +1,25 @@
+
+# Environment and secrets
+**/.env
+**/.env.*
+!**/.env.example
+**/.jwt_secret
+
+# Python
+**/venv/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# Frontend dependencies
+**/node_modules/
+
+# Generated databases and uploaded documents
+backend/chroma_db/
+backend/uploads/
+backend/app_data.db
+
+# IDE and system files
+.vscode/
+.DS_Store
+Thumbs.db

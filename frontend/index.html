@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DocuMind — AI PDF Editor &amp; Chat</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script type="module" src="app.js"></script></head>
+<body>
+<main id="auth" class="auth" hidden><form id="authForm" class="auth-card">
+  <div class="brand-mark">D</div><h1 id="authTitle">Welcome back</h1>
+  <label id="nameRow" hidden>Full name<input id="aName" class="field" autocomplete="name"></label>
+  <label>Email<input id="aEmail" class="field" type="email" required autocomplete="email"></label>
+  <label>Password<input id="aPass" class="field" type="password" minlength="8" required autocomplete="current-password"></label>
+  <p id="authErr" class="auth-err" role="alert"></p>
+  <button class="btn primary" id="authBtn">Log in</button>
+  <button type="button" class="text-btn" id="authSwitch">No account? Sign up</button>
+</form></main>
+
+<div id="app" class="app-shell" hidden>
+  <aside class="sidebar" id="sidebar" aria-label="Workspace">
+    <div class="brand"><div class="brand-mark">D</div><div><strong>DocuMind</strong><small>AI PDF editor &amp; chat</small></div></div>
+    <button class="btn primary" id="newChat">＋ New chat</button>
+    <section class="panel"><div class="section-head"><h2>Chats</h2></div>
+      <input id="chatSearch" class="field" type="search" placeholder="Search chats…" aria-label="Search chats">
+      <ul id="chatList" class="doc-list"></ul></section>
+    <section class="panel"><div class="section-head"><h2>PDFs <span class="count" id="fileCount">0</span></h2></div>
+      <label class="dropzone" id="drop" for="fileInput"><strong>Drop PDFs here</strong><small>or browse · PDF, TXT, MD</small><input id="fileInput" type="file" multiple accept=".pdf,.txt,.md"></label>
+      <div id="upStatus" class="upload-queue" aria-live="polite"></div>
+      <p class="muted">Click a name to open it. Tick boxes to use files as chat context.</p>
+      <ul id="fileList" class="doc-list"></ul></section>
+    <div class="sidebar-bottom"><button class="text-btn" id="profileBtn">👤 <span id="who">Profile</span></button><button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button></div>
+  </aside>
+  <div id="scrim" class="scrim"></div>
+  <section class="main">
+    <header class="topbar"><div class="top-left"><button id="menuBtn" class="icon-btn menu-btn" aria-label="Open menu">☰</button>
+      <div><div class="eyebrow">PDF EDITOR</div><h1 id="curName">No PDF open</h1></div></div></header>
+    <div class="split">
+      <section class="viewer" aria-label="PDF viewer and editor">
+        <div class="tools">
+          <input id="fq" class="field" type="search" placeholder="Find word or phrase…" aria-label="Find">
+          <button class="btn secondary" id="fPrev" aria-label="Previous match">↑</button><button class="btn secondary" id="fNext" aria-label="Next match">↓</button>
+          <span id="fCount" class="muted" aria-live="polite">0 matches</span>
+          <input id="fr" class="field" placeholder="Replace with…" aria-label="Replace with">
+          <button class="btn primary" id="rOne">Replace</button><button class="btn secondary" id="rAll">Replace all</button>
+          <button class="btn secondary" id="undo">↶ Undo</button><button class="btn secondary" id="redo">↷ Redo</button>
+          <button class="btn secondary" id="zOut" aria-label="Zoom out">−</button><button class="btn secondary" id="zIn" aria-label="Zoom in">+</button><button class="btn secondary" id="commit">Save to workspace</button><button class="btn primary" id="dl">⬇ Save Edited PDF to Laptop</button>
+        </div>
+        <div id="lineEdit" class="lineedit" hidden><input id="lineTxt" class="field" aria-label="Edit the whole line, including words next to the match"><button class="btn secondary" id="lineBtn">Apply line edit</button></div>
+        <ol id="mList" class="mlist" aria-label="Matches"></ol>
+        <div id="pages" class="pages"></div>
+      </section>
+      <section class="chatpane" aria-label="AI assistant">
+        <div id="log" class="chat-window" aria-live="polite"></div>
+        <form id="form" class="composer"><div class="composer-inner"><textarea id="q" rows="1" maxlength="4000" placeholder="Ask about the selected PDFs…" aria-label="Question"></textarea><button class="send-btn" id="send" aria-label="Send">↑</button></div><div class="cmeta"><span>Enter to send · Shift+Enter for a new line</span><span id="cnt">0 / 4000</span></div></form>
+      </section>
+    </div>
+  </section>
+</div>
+<dialog id="profile" class="dialog"><form method="dialog"><div class="dialog-head"><h2>Profile</h2><button class="icon-btn" aria-label="Close">×</button></div><dl id="pInfo" class="pinfo"></dl>
+  <div class="dialog-actions"><button type="button" class="btn danger-outline" id="logout">Log out</button></div></form></dialog>
+<div id="toasts" class="toast-region" aria-live="polite"></div>
+</body></html>

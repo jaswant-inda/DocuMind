@@ -1,0 +1,5 @@
+[
+  {"question":"What is the project title?","expected_source_file":"Project_I_RAG_Synopsis_Final.pdf","expected_page":2},
+  {"question":"List the project objectives.","expected_source_file":"Project_I_RAG_Synopsis_Final.pdf","expected_page":2},
+  {"question":"What is the proposed system flow?","expected_source_file":"Project_I_RAG_Synopsis_Final.pdf","expected_page":3}
+]

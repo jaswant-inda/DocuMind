@@ -1,0 +1,18 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+pydantic==2.9.2
+python-dotenv==1.0.1
+PyMuPDF==1.24.10
+langchain-core==0.3.6
+langchain-text-splitters==0.3.0
+tiktoken==0.7.0
+sentence-transformers==3.1.1
+chromadb==0.5.5
+langchain-openai==0.2.1
+langchain-anthropic==0.2.1
+rank-bm25==0.2.2
+pytest==8.3.3
+# Optional OCR: install pytesseract + Pillow and the Tesseract system binary.
+# Optional Ollama: install langchain-community.
+# Optional Google Gemini: install langchain-google-genai.
